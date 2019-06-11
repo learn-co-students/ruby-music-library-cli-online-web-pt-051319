@@ -41,7 +41,55 @@ class MusicLibraryController
       artists.sort.uniq.each do |item|
         puts "#{num}. #{item}"
           num += 1
-     end
+      end
+  end
+  
+  def list_genres
+    num = 1
+    genres = []
+    Genre.all.each {|genre| genres << genre.name}
+      genres.sort.uniq.each do |item|
+        puts "#{num}. #{item}"
+          num += 1
+      end      
+  end
+  
+  def list_songs_by_artist
+    puts "Please enter the name of an artist:"
+    reply = gets.chomp
+    songs = []
+    num = 1
+      Song.all.each do |song|
+        if reply == song.artist.name
+          songs << song.name
+        end
+      end
+      songs.sort.uniq.each do |item|
+        x = Song.find_by_name(item)
+          puts "#{num}. #{x.name} - #{x.genre.name}"   
+            num += 1
+      end           
+  end
+  
+  def list_songs_by_genre
+    puts "Please enter the name of a genre:"
+    reply = gets.chomp
+    genres = []
+    num = 1
+      Genre.all.each do |genre|
+        genre.songs.each do |thing|
+        # binding.pry
+        if reply == genre.name
+          genres << thing.name
+          end
+        end
+      end
+      genres.sort.uniq.each do |item|
+        x = Song.find_by_name(item)
+        # binding.pry
+          puts "#{num}. #{x.artist.name} - #{x.name}" 
+            num += 1
+      end           
   end  
 
 
