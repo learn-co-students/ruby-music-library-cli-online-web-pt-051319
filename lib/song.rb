@@ -27,20 +27,31 @@ class Song
   end
   
   def self.create(name)
-    Song.new(name).save
-    self
+    x = Song.new(name)
+    x.save
+    return x
   end
 
   def artist=(name)
-    # binding.pry
     @artist = name
     @artist.add_song(self)
   end
 
   def genre=(name)
-    # binding.pry
     @genre = name
     @genre.songs.include?(self) ? self : @genre.songs << self
+  end
+  
+  def self.find_by_name(name)
+    @@all.each do |thing|
+      if thing.name == name
+        return thing
+      end  
+    end
+  end
+  
+  def self.find_or_create_by_name(name)
+    # binding.pry
   end  
 
 
