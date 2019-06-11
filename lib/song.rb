@@ -1,12 +1,15 @@
 require 'pry'
 class Song
-  attr_accessor :name, :artist
+  attr_accessor :name, :artist, :genre
   @@all = []
 
-  def initialize(name, artist = nil)
+  def initialize(name, artist = nil, genre= nil)
     @name = name
+    @genre = genre
     if artist != nil
       self.artist=(artist)
+    genre = nil ? @genre = nil : self.genre=(genre)
+      
     end  
   end
   
@@ -31,7 +34,13 @@ class Song
     # binding.pry
     @artist = name
     @artist.add_song(self)
-    
   end
+
+  def genre=(name)
+    # binding.pry
+    @genre = name
+    @genre.songs.include?(self) ? self : @genre.songs << self
+  end  
+
 
 end  
