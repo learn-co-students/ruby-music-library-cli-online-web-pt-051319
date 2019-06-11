@@ -1,9 +1,10 @@
 require 'bundler'
 Bundler.require
 
-# module Concerns
-  require_relative '../lib/concerns/findable.rb'
-# end
+module Concerns
+  
+end
+require_relative '../lib/concerns/findable.rb'
 
 require_all 'lib'
 
