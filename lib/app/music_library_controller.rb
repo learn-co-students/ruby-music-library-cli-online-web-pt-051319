@@ -26,14 +26,15 @@ class MusicLibraryController
   def list_songs
     num = 1
     songs = []
-    Song.all.each do |song|
-      songs << song.name
-        songs.uniq.sort.each do |eachsong|
-          puts "#{num}. #{eachsong}"
+    Song.all.each {|song| songs << song.name}
+      songs.sort.each do |item|
+        Song.find_by_name(item)
+        binding.pry
+        
         num += 1
     
-      end
-    end  
+      
+    end 
   end  
 
 
