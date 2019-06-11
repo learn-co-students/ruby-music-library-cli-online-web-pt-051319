@@ -26,12 +26,14 @@ class MusicLibraryController
   def list_songs
     num = 1
     songs = []
+    deeznutz = []
     Song.all.each {|song| songs << song.name}
       songs.sort.uniq.each do |item|
         x = Song.find_by_name(item)
-          puts "#{num}. #{x.artist.name} - #{item} - #{x.genre.name}"
+          deeznutz << "#{num}. #{x.artist.name} - #{item} - #{x.genre.name}"
             num += 1   
-    end 
+    end
+    deeznutz.each  {|nut| puts nut}
   end
   
   def list_artists
@@ -95,11 +97,24 @@ class MusicLibraryController
   def play_song
     puts "Which song number would you like to play?"
     reply = gets.chomp
-    list_songs
+    reply != [1..5] ? "Which song number would you like to play?" :
+      list_songs.each do |dis|
+        # binding.pry
+        x = dis.split(". ").pop.split(" - ")
+        if reply == dis.split(".")[0] 
+          # binding.pry
+          puts "Playing #{x[1]} by #{x[0]}"
     # binding.pry
-
+        end
+      end  
   end  
 
+  # 1. Thundercat - For Love I Come - dance
+  # 2. Real Estate - Green Aisles - country
+  # 3. Real Estate - It's Real - hip-hop
+  # 4. Action Bronson - Larry Csonka - indie
+  # 5. Jurassic 5 - What's Golden - hip-hop
 
+  def 
 
 end  
