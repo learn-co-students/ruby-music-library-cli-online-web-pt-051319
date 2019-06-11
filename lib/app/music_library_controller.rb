@@ -32,6 +32,16 @@ class MusicLibraryController
           puts "#{num}. #{x.artist.name} - #{item} - #{x.genre.name}"
             num += 1   
     end 
+  end
+  
+  def list_artists
+    num = 1
+    artists = []
+    Artist.all.each {|artist| artists << artist.name}
+      artists.sort.uniq.each do |item|
+        puts "#{num}. #{item}"
+          num += 1
+     end
   end  
 
 
