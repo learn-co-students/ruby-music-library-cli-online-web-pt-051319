@@ -27,13 +27,10 @@ class MusicLibraryController
     num = 1
     songs = []
     Song.all.each {|song| songs << song.name}
-      songs.sort.each do |item|
-        Song.find_by_name(item)
-        binding.pry
-        
-        num += 1
-    
-      
+      songs.sort.uniq.each do |item|
+        x = Song.find_by_name(item)
+          puts "#{num}. #{x.artist.name} - #{item} - #{x.genre.name}"
+            num += 1   
     end 
   end  
 
