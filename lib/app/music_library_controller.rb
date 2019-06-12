@@ -111,7 +111,8 @@ class MusicLibraryController
   
   def play_song
     puts "Which song number would you like to play?"
-    reply = call
+    reply = gets.chomp
+    # binding.pry
     reply != [1..5] ? "Which song number would you like to play?" :
       list_songs.each do |dis|
         # binding.pry
