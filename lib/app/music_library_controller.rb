@@ -1,6 +1,8 @@
 require 'pry'
 class MusicLibraryController
 
+  @@listsongs = []
+
   def initialize(path='./db/mp3s')
     new_object = MusicImporter.new(path)
     new_object.import
@@ -48,6 +50,7 @@ class MusicLibraryController
           deeznutz << "#{num}. #{x.artist.name} - #{item} - #{x.genre.name}"
             num += 1   
     end
+    @@listsongs << deeznutz
     deeznutz.each  {|nut| puts nut}
   end
   
@@ -110,17 +113,21 @@ class MusicLibraryController
   end
   
   def play_song
-    puts "Which song number would you like to play?"
+    # puts "Which song number would you like to play?"
     reply = gets.chomp
     # binding.pry
-    reply != [1..5] ? "Which song number would you like to play?" :
-      list_songs.each do |dis|
-        # binding.pry
-        x = dis.split(". ").pop.split(" - ")
-        if reply == dis.split(".")[0] 
+    if reply != [1..5]
+      puts "Which song number would you like to play?"
+    else reply == [1..5]
+      # binding.pry
+      @@listsongs.each do |dis|
+        binding.pry
+          x = dis.split(". ").pop.split(" - ")
+          if reply == dis.split(".")[0] 
           # binding.pry
-          puts "Playing #{x[1]} by #{x[0]}"
+            puts "Playing #{x[1]} by #{x[0]}"
     # binding.pry
+          end
         end
       end  
   end
