@@ -47,11 +47,11 @@ class MusicLibraryController
     Song.all.each {|song| songs << song.name}
       songs.sort.uniq.each do |item|
         x = Song.find_by_name(item)
-          deeznutz << "#{num}. #{x.artist.name} - #{item} - #{x.genre.name}"
+          deeznutz << z = "#{num}. #{x.artist.name} - #{item} - #{x.genre.name}"
+          puts z
             num += 1   
     end
-    @@listsongs << deeznutz
-    deeznutz.each  {|nut| puts nut}
+    @@listsongs = deeznutz
   end
   
   def list_artists
@@ -113,23 +113,25 @@ class MusicLibraryController
   end
   
   def play_song
-    # puts "Which song number would you like to play?"
+    puts "Which song number would you like to play?"
     reply = gets.chomp
     # binding.pry
-    if reply != [1..5]
-      puts "Which song number would you like to play?"
-    else reply == [1..5]
+    
+    if (1..@@listsongs.count).include?(reply.to_i)
       # binding.pry
       @@listsongs.each do |dis|
-        binding.pry
+        # binding.pry
           x = dis.split(". ").pop.split(" - ")
           if reply == dis.split(".")[0] 
           # binding.pry
-            puts "Playing #{x[1]} by #{x[0]}"
+           puts "Playing #{x[1]} by #{x[0]}"
     # binding.pry
+    # else (1..@@listsongs.count).include?(reply.to_i) == false
+      
           end
         end
       end  
+      
   end
   
 
