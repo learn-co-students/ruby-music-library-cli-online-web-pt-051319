@@ -115,32 +115,14 @@ class MusicLibraryController
   def play_song
     puts "Which song number would you like to play?"
     reply = gets.chomp
-    # binding.pry
-    
-    if (1..@@listsongs.count).include?(reply.to_i)
-      # binding.pry
-      @@listsongs.each do |dis|
-        # binding.pry
-          x = dis.split(". ").pop.split(" - ")
-          if reply == dis.split(".")[0] 
-          # binding.pry
-           puts "Playing #{x[1]} by #{x[0]}"
-    # binding.pry
-    # else (1..@@listsongs.count).include?(reply.to_i) == false
-      
-          end
+
+    sorted_songs = Song.all.sort{ |s1, s2| s1.name <=> s2.name}
+    sorted_songs.uniq.each_with_index do |song, i|
+     
+      if reply.to_i == i + 1
+        puts "Playing #{song.name} by #{song.artist.name}"
         end
-      end  
-      
+      end    
   end
-  
-
-  # 1. Thundercat - For Love I Come - dance
-  # 2. Real Estate - Green Aisles - country
-  # 3. Real Estate - It's Real - hip-hop
-  # 4. Action Bronson - Larry Csonka - indie
-  # 5. Jurassic 5 - What's Golden - hip-hop
-
-
 
 end  
