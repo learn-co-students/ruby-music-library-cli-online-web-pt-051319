@@ -4,11 +4,15 @@ class Genre
   
   def initialize(name)
    @name = name
-   
+   @songs = []
   end 
   
   def self.all
     @@all
+  end 
+  
+  def songs
+    @songs 
   end 
   
   def save
@@ -20,9 +24,14 @@ class Genre
   end 
   
   def self.create(name) 
-    object  = Genre.new(name) 
+    object = Genre.new(name) 
     object.save
     object
   end 
+  
+  def artists
+    #another way to do it in one line same on Artist class
+    self.songs.collect {|song| song.artist }.uniq
+  end   
   
 end   
