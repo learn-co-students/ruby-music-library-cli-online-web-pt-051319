@@ -29,9 +29,15 @@ class MusicLibraryController
   end
   
   def list_songs
-    sorted_songs = Song.all.sort_by(&:name).uniq
-    sorted_songs.each_with_index { |s, i| puts "#{i + 1}. #{s.artist.name} - #{s.name} - #{s.genre.name}" }
+    Song.all.sort_by(&:name).each.with_index(1) do |song, index|
+      puts "#{index}. #{song.artist.name} - #{song.name} - #{song.genre.name}"
+    end
   end
+  
+  # def list_songs
+  #   sorted_songs = Song.all.sort_by(&:name).uniq
+  #   sorted_songs.each_with_index { |s, i| puts "#{i + 1}. #{s.artist.name} - #{s.name} - #{s.genre.name}" }
+  # end
   
   def list_artists
     sorted_artists = Artist.all.sort_by(&:name).uniq
@@ -64,7 +70,10 @@ class MusicLibraryController
   def play_song
     puts "Which song number would you like to play?"
     input = gets.chomp
-    
+      if input.is_a? Integer && input > 0 && input < 6
+        sorted_songs = Artist.find_by_name(input).songs.sort_by(&:name).uniq
+        sorted_songs.
+      end
   end
 
 end
