@@ -25,19 +25,27 @@ class MusicLibraryController
     
       input = gets.chomp
       
+      case input
+        when "list songs"
+          self.list_songs
+        when "list artists"
+          self.list_artists
+        when "list genres"
+          self.list_genres
+        when "list artist"
+          self.list_songs_by_artist
+        when "list genre"
+          self.list_songs_by_genre
+        when "play song"
+          self.play_song
+      end      
     end
   end
   
   def list_songs
-    Song.all.sort_by(&:name).each.with_index(1) do |song, index|
-      puts "#{index}. #{song.artist.name} - #{song.name} - #{song.genre.name}"
-    end
+    sorted_songs = Song.all.sort_by(&:name).uniq
+    sorted_songs.each_with_index { |s, i| puts "#{i + 1}. #{s.artist.name} - #{s.name} - #{s.genre.name}" }
   end
-  
-  # def list_songs
-  #   sorted_songs = Song.all.sort_by(&:name).uniq
-  #   sorted_songs.each_with_index { |s, i| puts "#{i + 1}. #{s.artist.name} - #{s.name} - #{s.genre.name}" }
-  # end
   
   def list_artists
     sorted_artists = Artist.all.sort_by(&:name).uniq
@@ -70,10 +78,12 @@ class MusicLibraryController
   def play_song
     puts "Which song number would you like to play?"
     input = gets.chomp
-      if input.is_a? Integer && input > 0 && input < 6
-        sorted_songs = Artist.find_by_name(input).songs.sort_by(&:name).uniq
-        sorted_songs.
+      if input.to_i > 0 && input.to_i < 6
+        song = Song.all.sort_by(&:name).uniq[input.to_i - 1]
+        puts "Playing #{song.name} by #{song.artist.name}" 
       end
   end
+  
+  
 
 end
