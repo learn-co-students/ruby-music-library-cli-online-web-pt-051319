@@ -1,3 +1,5 @@
+require 'pry'
+
 class MusicLibraryController
 
   
@@ -25,6 +27,11 @@ class MusicLibraryController
       
     end
   end
+  
+  # def list_songs
+  #   binding.pry
+  #   Song.all.sort_byeach_with_index { |song, i| puts "#{i + 1}. "
+  # end
   
   
 
