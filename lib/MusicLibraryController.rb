@@ -28,10 +28,10 @@ class MusicLibraryController
     end
   end
   
-  # def list_songs
-  #   binding.pry
-  #   Song.all.sort_byeach_with_index { |song, i| puts "#{i + 1}. "
-  # end
+  def list_songs
+    binding.pry
+    Song.all.sort_by.each_with_index { |song, i| puts "#{i + 1}. #{song.artist} - #{song.name}"
+  end
   
   
 
