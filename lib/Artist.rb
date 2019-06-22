@@ -33,7 +33,7 @@ class Artist
   end
   
   def genres
-    self.songs.map { |song| song.genre }
+    self.songs.map { |song| song.genre }.uniq
   end
   
 end
