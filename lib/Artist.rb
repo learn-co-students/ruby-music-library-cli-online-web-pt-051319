@@ -1,3 +1,5 @@
+require_relative '../lib/concerns/Findable.rb' 
+
 class Artist
   
   extend Concerns::Findable
