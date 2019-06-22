@@ -29,10 +29,18 @@ class MusicLibraryController
   end
   
   def list_songs
-    binding.pry
-    Song.all.sort_by.each_with_index { |song, i| puts "#{i + 1}. #{song.artist} - #{song.name}"
+    sorted_songs = Song.all.sort_by(&:name).uniq
+    sorted_songs.each_with_index { |s, i| puts "#{i + 1}. #{s.artist.name} - #{s.name} - #{s.genre.name}" }
   end
   
+  def list_artists
+    sorted_artists = Artist.all.sort_by(&:name).uniq
+    sorted_artists.each_with_index { |a, i| puts "#{i + 1}. #{a.name}" }
+  end
   
+  def list_genres
+     sorted_genres = Genre.all.sort_by(&:name).uniq
+     sorted_genres.each_with_index { |g, i| puts "#{i + 1}. #{g.name}" }
+  end
 
 end
