@@ -58,31 +58,28 @@ class MusicLibraryController
 
    def list_songs
     songs = []
-    i = 0
+    
     Song.all.each { |song| songs << song }
-    songs_sorted = songs.sort { |e,f| e.name <=> f.name}
-    songs_sorted.uniq.each { |song|
-      i += 1
+    songs_sorted = songs.sort { |e,f| e.name <=> f.name}.uniq
+    songs_sorted.each.with_index(1) { |song,i|
       puts "#{i}. #{song.artist.name} - #{song.name} - #{song.genre.name}"
     }
   end
 
    def list_artists
-    i = 0
     artists_name = []
-    Artist.all.each { |artist| artists_name << artist.name}
-    artists_name.sort.uniq.each { |name|
-      i += 1
+    
+    Artist.all.each { |artist| artists_name << artist.name}.uniq
+    artists_name.sort.each.with_index(1) { |name,i|
       puts "#{i}. #{name}"
     }
   end
 
-   def list_genres
-    i = 0
+    def list_genres
     genres_name = []
+    
     Genre.all.each { |genre| genres_name << genre.name}
-    genres_name.sort.uniq.each { |name|
-      i += 1
+    genres_name.sort.each.with_index(1) { |name,i|
       puts "#{i}. #{name}"
     }
   end
@@ -90,12 +87,10 @@ class MusicLibraryController
    def list_songs_by_artist
     puts "Please enter the name of an artist:"
     input = gets.strip
-    i = 0
-    songs = []
+
     songs = Song.all.select { |song| song.artist.name == input}
-    songs_sorted = songs.sort { |e,f| e.name <=> f.name}
-    songs_sorted.uniq.each { |song|
-      i += 1
+    songs_sorted = songs.sort { |e,f| e.name <=> f.name}.uniq
+    songs_sorted.each.with_index(1) { |song,i|
       puts "#{i}. #{song.name} - #{song.genre.name}"
     }
   end
@@ -103,11 +98,10 @@ class MusicLibraryController
    def list_songs_by_genre
     puts "Please enter the name of a genre:"
     input = gets.strip
-    i = 0
+  
     songs = Song.all.select { |song| song.genre.name == input}
-    songs_sorted = songs.sort { |e,f| e.name <=> f.name}
-    songs_sorted.uniq.each { |song|
-      i += 1
+    songs_sorted = songs.sort { |e,f| e.name <=> f.name}.uniq
+    songs_sorted.each.with_index(1) { |song,i|
       puts "#{i}. #{song.artist.name} - #{song.name}"
     }
   end
@@ -115,10 +109,10 @@ class MusicLibraryController
    def play_song
     input = ""
     puts "Which song number would you like to play?"
-      input = gets.strip
-      songs_sorted = Song.all.sort { |e,f| e.name <=> f.name}
-      if input.to_i <= songs_sorted.uniq.size && input.to_i != 0
-        puts "Playing #{songs_sorted.uniq[input.to_i - 1].name} by #{songs_sorted.uniq[input.to_i - 1].artist.name}"
+      input = gets.strip.to_i
+      songs_sorted = Song.all.sort { |e,f| e.name <=> f.name}.uniq
+      if input <= songs_sorted.size && input != 0
+        puts "Playing #{songs_sorted[input- 1].name} by #{songs_sorted[input - 1].artist.name}"
       end
   end
 
