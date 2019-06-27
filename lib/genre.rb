@@ -10,7 +10,6 @@ class Genre
   
   def initialize(name)
    @name = name 
-   @@all << self
    @songs = [ ]
   end
   
@@ -35,6 +34,5 @@ class Genre
   def artists
     songs.collect(&:artist).uniq
  end
-  
   
 end
