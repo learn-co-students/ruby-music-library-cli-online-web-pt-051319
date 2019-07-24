@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe "Song" do
   let(:song) { Song.new("In the Aeroplane Over the Sea") }
-
+  
   describe "#initialize" do
     it "accepts a name for the new song" do
       new_song = Song.new("Alison")
@@ -70,6 +70,14 @@ describe "Song" do
       created_song = Song.create("Kaohsiung Christmas")
 
       expect(Song.all).to include(created_song)
+      
     end
-  end
-end
+    
+    puts Song.new ("Blank Space").name #=> "Blank Space"
+    
+          @@all[]
+        end
+    
+    
+    
+    
