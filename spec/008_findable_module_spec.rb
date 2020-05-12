@@ -40,6 +40,7 @@ describe "Concerns::Findable" do
     end
 
     it "isn't hard-coded" do
+      # binding.pry
       expect(Genre.find_by_name("shoegaze")).to be(genre_two)
     end
   end

@@ -55,6 +55,7 @@ describe "MusicLibraryController - CLI Commands" do
 
   describe "'play song'" do
     it "triggers #play_song" do
+      
       allow(music_library_controller).to receive(:gets).and_return("play song", "2", "exit")
 
       expect(music_library_controller).to receive(:play_song)
