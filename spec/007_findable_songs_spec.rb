@@ -1,4 +1,5 @@
 context "Song" do
+  Song.all.clear
   let!(:song_one) { Song.create("The King of Carrot Flowers, Pt. One") }
   let!(:song_two) { Song.create("In the Aeroplane Over the Sea") }
 
